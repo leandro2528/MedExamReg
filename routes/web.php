@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\controllers\DashboardController;
+use App\Http\controllers\PatientController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,4 +22,9 @@ Route::get('/', function () {
 
 Route::prefix('/dashboards')->group(function() {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboards-index');
+});
+
+Route::prefix('/patients')->group(function() {
+    Route::get('/', [patientController::class, 'index'])->name('patients-index');
+    
 });

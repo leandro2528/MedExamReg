@@ -16,10 +16,10 @@
                     <nav class="navbar navbar-expand">
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <a class="nav-link" href="">DASHBOARD</a>
+                                <a class="nav-link" href="{{ route('dashboards-index') }}">DASHBOARD</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="">PACIENTES</a>
+                                <a class="nav-link" href="{{ route('patients-index') }}">PACIENTES</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="">EXAMES</a>
