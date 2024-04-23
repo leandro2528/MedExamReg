@@ -22,7 +22,7 @@
                                 <a class="nav-link" href="{{ route('patients-index') }}">PACIENTES</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="">EXAMES</a>
+                                <a class="nav-link" href="{{ route('exams-index') }}">EXAMES</a>
                             </li>
                         </ul>
                     </nav>
