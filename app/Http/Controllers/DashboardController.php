@@ -4,9 +4,19 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Models\Patient;
+
 class DashboardController extends Controller
 {
     public function index() {
-        return view('dashboards.index');
+        $patients = Patient::orderBy('id', 'desc')->get();
+        $totalPatients = Patient::count();
+        return view('dashboards.index', 
+        [
+            'patients'=>$patients,
+            'totalPatients'=>$totalPatients
+        ]
+        
+    );
     }
 }

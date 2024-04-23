@@ -16,42 +16,42 @@
     </div>
     <div class="row">
         <div class="col d-flex justify-content-between">
-            <form action="{{ route('patients-store') }}" method="POST">
+            <form action="{{ route('patients-store') }}" method="POST" onsubmit="alert('Cadastro realizado com sucesso!')">
                 @csrf
                 <div class="form-box d-flex">
                     <div class="form-group my-3">
                         <label for="">Nome</label>
-                        <input type="text" class="form-control" name="nome">
+                        <input type="text" class="form-control" name="nome" required>
                     </div>
                     <div class="form-group my-3 mx-3">
                         <label for="">Email</label>
-                        <input type="email" class="form-control" name="email">
+                        <input type="email" class="form-control" name="email" required>
                     </div>
                     <div class="form-group my-3">
                         <label for="">Senha</label>
-                        <input type="password" class="form-control" name="senha">
+                        <input type="password" class="form-control" name="senha"required>
                     </div>
                     <div class="form-group my-3 ms-3">
                         <label for="">CPF</label>
-                        <input type="text" class="form-control" name="cpf">
+                        <input type="text" class="form-control" name="cpf" required>
                     </div>
                 </div>
                 <div class="form-box d-flex">
                     <div class="form-group my-3">
                         <label for="">Telefone</label>
-                        <input type="text" class="form-control" name="telefone">
+                        <input type="text" class="form-control" name="telefone" required>
                     </div>
                     <div class="form-group my-3 mx-3">
                         <label for="">Cidade</label>
-                        <input type="text" class="form-control" name="cidade">
+                        <input type="text" class="form-control" name="cidade" required>
                     </div>
                     <div class="form-group my-3">
                         <label for="">Foto</label>
-                        <input type="text" class="form-control" name="foto">
+                        <input type="text" class="form-control" name="foto" required>
                     </div>
                     <div class="form-group my-3 ms-3">
                         <label for="">Observação</label>
-                        <input type="text" class="form-control" name="observacao">
+                        <input type="text" class="form-control" name="observacao" required>
                     </div>
                 </div>
                 <div class="form-box">

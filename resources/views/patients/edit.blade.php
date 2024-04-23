@@ -16,7 +16,7 @@
     </div>
     <div class="row">
         <div class="col d-flex justify-content-between">
-            <form action="{{ route('patients-update', ['id'=>$patients->id]) }}" method="POST">
+            <form action="{{ route('patients-update', ['id'=>$patients->id]) }}" method="POST" onsubmit="alert('Paciente editado com sucesso!')">
                 @csrf
                 @method('put')
                 <div class="form-box d-flex">
