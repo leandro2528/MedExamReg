@@ -28,4 +28,6 @@ Route::prefix('/patients')->group(function() {
     Route::get('/', [patientController::class, 'index'])->name('patients-index');
     Route::get('/create', [PatientController::class, 'create'])->name('patients-create');
     Route::post('/', [PatientController::class, 'store'])->name('patients-store');
+    Route::get('/{id}edit', [PatientController::class, 'edit'])->where('id', '[0-9]+')->name('patients-edit');
+    Route::put('/{id}', [PatientController::class, 'update'])->where('id', '[0-9]+')->name('patients-update');
 });

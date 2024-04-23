@@ -46,4 +46,30 @@ class PatientController extends Controller
         return redirect()->route('patients-index');
 
     }
+
+    public function edit($id) {
+        $patients = Patient::where('id', $id)->first();
+        return view('patients.edit',
+        [
+            'patients'=>$patients
+        ]
+    );
+    }
+
+    public function update(Request $request, $id) {
+        $date = [
+            'nome' => $request->nome,
+            'email' => $request->email,
+            'senha' => $request->senha,
+            'cpf' => $request->cpf,
+            'telefone' => $request->telefone,
+            'cidade' => $request->cidade,
+            'foto' => $request->foto,
+            'observacao' => $request->observacao
+        ];
+
+        $patients = Patient::where('id', $id)->update($date);
+        return redirect()->route('patients-index');
+
+    }
 }
