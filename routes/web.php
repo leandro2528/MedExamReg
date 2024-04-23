@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\controllers\DashboardController;
 use App\Http\controllers\PatientController;
+use App\Http\controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,4 +31,13 @@ Route::prefix('/patients')->group(function() {
     Route::post('/', [PatientController::class, 'store'])->name('patients-store');
     Route::get('/{id}edit', [PatientController::class, 'edit'])->where('id', '[0-9]+')->name('patients-edit');
     Route::put('/{id}', [PatientController::class, 'update'])->where('id', '[0-9]+')->name('patients-update');
+});
+
+Route::prefix('/users')->group(function() {
+    Route::get('/', [UserController::class, 'index'])->name('users-index');
+    Route::get('/create', [UserController::class, 'create'])->name('users-create');
+    Route::post('/', [UserController::class, 'store'])->name('users-store');
+    Route::get('/{id}edit', [UserController::class, 'edit'])->where('id', '[0-9]+')->name('users-edit');
+    Route::put('/{id}', [UserController::class, 'update'])->where('id', '[0-9]+')->name('users-update');
+    Route::delete('/{id}', [UserController::class, 'destroy'])->where('id', '[0-9]+')->name('users-destroy');
 });

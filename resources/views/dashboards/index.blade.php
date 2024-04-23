@@ -37,8 +37,8 @@
                     </div>
                     <div class="d-flex flex-column justify-content-center">
                         <a class="btn btn-outline-secondary btn-sm" href="">Editar meu Perfil</a>
-                        <a class="btn btn-info my-2 btn-sm" href="">Todos os Pacientes</a>
-                        <a class="btn btn-info btn-sm" href="">Adicionar Pacientes</a>
+                        <a class="btn btn-info my-2 btn-sm" href="{{ route('patients-index') }}">Todos os Pacientes</a>
+                        <a class="btn btn-info btn-sm" href="{{ route('patients-create') }}">Adicionar Pacientes</a>
                     </div>
                 </div>
                 <!-- fim perfil user -->
