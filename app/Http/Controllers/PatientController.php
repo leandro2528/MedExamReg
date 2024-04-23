@@ -16,5 +16,34 @@ class PatientController extends Controller
             'patients'=>$patients
         ]
     );
+
+    }
+
+    public function create() {
+        $patients = Patient::all();
+        return view('patients.create', 
+    
+        [
+            'patients'=>$patients
+        ]
+    );
+
+    }
+
+    public function store(Request $request) {
+        $request->validate([
+            'nome' => 'required',
+            'email' => 'required',
+            'senha' => 'required',
+            'cpf' => 'required',
+            'telefone' => 'required',
+            'cidade' => 'required',
+            'foto' => 'required',
+            'observacao' => 'required'
+        ]);
+
+        Patient::create($request->all());
+        return redirect()->route('patients-index');
+
     }
 }

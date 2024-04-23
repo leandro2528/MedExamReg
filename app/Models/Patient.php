@@ -8,4 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class Patient extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'nome',
+        'email',
+        'senha',
+        'cpf',
+        'telefone',
+        'cidade',
+        'foto',
+        'observacao'
+    ];
 }

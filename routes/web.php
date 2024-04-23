@@ -26,5 +26,6 @@ Route::prefix('/dashboards')->group(function() {
 
 Route::prefix('/patients')->group(function() {
     Route::get('/', [patientController::class, 'index'])->name('patients-index');
-    
+    Route::get('/create', [PatientController::class, 'create'])->name('patients-create');
+    Route::post('/', [PatientController::class, 'store'])->name('patients-store');
 });
