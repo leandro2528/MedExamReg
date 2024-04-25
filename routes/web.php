@@ -47,4 +47,6 @@ Route::prefix('/exams')->group(function() {
     Route::get('/', [ExamController::class, 'index'])->name('exams-index');
     Route::get('/create', [ExamController::class, 'create'])->name('exams-create');
     Route::post('/', [ExamController::class, 'store'])->name('exams-store');
+    Route::get('/{id}edit', [ExamController::class, 'edit'])->where('id', '[0-9]+')->name('exams-edit');
+    
 });

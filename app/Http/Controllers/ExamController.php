@@ -11,14 +11,21 @@ class ExamController extends Controller
 {
     public function index() {
         $exams = Exam::orderBy('id', 'desc')->with('patient')->get(); 
-        $patients = Patient::all();
-        return view('exams.index', 
-        [
-            'exams' => $exams, 'patients'=>$patients
-        ]
-    );
+    
+        // Verifica se cada exame tem uma foto; se não, define uma string vazia
+        foreach($exams as $exam)
+            if (isset($exam->foto)) {
+                $exam->foto;
+            } else {
+                $exam->foto = '';
+            }
 
+    
+        $patients = Patient::all();
+        $produto = [];
+        return view('exams.index', compact('exams', 'patients', 'produto'));
     }
+    
 
     public function create() {
         $exams = Exam::all();
@@ -32,12 +39,19 @@ class ExamController extends Controller
     }
 
     public function store(Request $request) {
-        $request->validate([
-            'patient_id' => 'required',
-            'exame' => 'required'
-        ]);
+        $produto = $request->all();
 
-        Exam::create($request->all());
-        return redirect()->route('exams-index');
+        if ($request->foto) {
+            $produto['foto'] = $request->foto->store('produtos');
+        }
+
+        $produto = Exam::create($produto);
+        return redirect()->route('exams-index')->with('sucess', 'Produto cadastrado com sucesso');
+    }
+
+    public function edit($id) {
+        $exams = Exam::findOrFail($id);
+        $patients = Patient::all();
+        return view('exams.edit', ['exams'=>$exams, 'patients'=>$patients]);
     }
 }

@@ -16,6 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('patient_id');
             $table->foreign('patient_id')->references('id')->on('patients')->onDelete('cascade')->onUpdate('cascade');
             $table->enum('exame', ['Hemograma', 'Colesterol', 'Transaminase', 'TSH e T4 livre', 'Uréia e Criatina', 'Fezes e Urina']);
+            $table->string('foto');
             $table->timestamps();
         });
     }

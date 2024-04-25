@@ -25,7 +25,7 @@
 
             <div class="card-box" style="width: 230px;">
                 <div class="card p-4 mb-3 text-center">
-                    <div class="card-image"><img style="width: 120px;" src="{{ $patient->foto }}" alt=""></div>
+                    <div class="card-image"><img style="width: 120px;" src="{{ $patient->foto ? asset('storage/'. $patient->foto) : 'placeholder.jpg' }}" alt=""></div>
                     <div class="card-title mt-3 text-secondary"><h6>{{ $patient->nome }}</h6></div>
                     <div class="btn-info-pacient">
                         <a class="btn btn-sm" href="{{ route('patients-edit', ['id'=>$patient->id]) }}">
@@ -63,11 +63,13 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
         <div class="modal-body">
+          @foreach($patients as $patient)
             <h6>Paciente: {{ $patient->nome }}</h6>
             <h6>Email: {{ $patient->email }}</h6>
             <h6>CPF: {{ $patient->cpf }}</h6>
             <h6>Telefone: {{ $patient->telefone }}</h6>
             <h6>Observações: {{ $patient->observacao }}</h6></br>
+            @endforeach
         </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary">PDF</button>

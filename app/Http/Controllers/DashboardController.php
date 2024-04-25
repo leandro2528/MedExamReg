@@ -10,11 +10,14 @@ use App\Models\Exam;
 class DashboardController extends Controller
 {
     public function index() {
-        $patients = Patient::orderBy('id', 'desc')->get();
+        
+        $exams = Exam::with('patient')->get();
+        $patients = Patient::all();
         $totalPatients = Patient::count();
 
         return view('dashboards.index', 
-        [
+        [ 
+            'exams'=>$exams,
             'patients'=>$patients,
             'totalPatients'=>$totalPatients
         ]

@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
-@section('title', 'Listagem de Exames')
+@section('title', 'Edição de Exame')
 
 @section('content')
 <div class="container">
     <div class="row my-4">
         <div class="col-10">
-            <h6>Lista de Exames</h6>
+            <h6>Edição de Exame</h6>
         </div>
         <div class="col-2">
             <a class="btn btn-secondary btn-sm" href="{{ route('dashboards-index') }}">Voltar</a>
@@ -15,33 +15,31 @@
 
     <div class="row">
         <div class="col-6">
-            <form action="{{ route('exams-store') }}" method="POST" enctype="multipart/form-data">
+            <form action="" method="POST" enctype="multipart/form-data">
                 @csrf
+                @method('PUT') <!-- Método PUT para atualização -->
                 <div class="from-group my-3">
                     <label for="">Tipo de exame</label>
-                    <select class="form-select" name="exame" id="exame">
-                        <option value="select">-- Selecione um exame --</option>
-                        <option value="hemograma">Hemograma</option>
-                        <option value="colesterol">Colesterol</option>
-                        <option value="transaminase">Transaminase</option>
-                        <option value="tsh e t4 livre">TSH e T4 Livre</option>
-                    </select>
-                </div>
-                <div class="form-group my-3">
-                    <label for="">Paciente</label>
-                    <select class="form-select" name="patient_id" id="patient_id">
-                        <option value="select">-- Selecione o paciente</option>
-                        @foreach($patients as $patient)
-                            <option value="{{ $patient->id }}">{{ $patient->nome }}</option>
+                    <select class="form-select" name="exam" id="exam">
+                        @foreach($exams as $exam)
+                            <option value="{{ $exam->id }}" {{ $patients->exam_id == $exam->id ? 'selected' : '' }}>{{ $exam->nome }}</option>
                         @endforeach
                     </select>
                 </div>
                 <div class="form-group my-3">
                     <label for="">Paciente</label>
+                    <select class="form-select" name="patient_id" id="patient_id">
+                        @foreach($patients as $patient)
+                            <option value="{{ $patient->id }}" {{ $exam->patient_id == $patient->id ? 'selected' : '' }}>{{ $patient->nome }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="form-group my-3">
+                    <label for="">Foto</label>
                     <input type="file" class="form-control" name="foto">
                 </div>
                 <div class="form-group my-3">
-                    <input type="submit" class="btn btn-primary btn-sm" value="Cadastrar">
+                    <input type="submit" class="btn btn-primary btn-sm" value="Atualizar">
                 </div>
             </form>
         </div>

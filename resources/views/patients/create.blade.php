@@ -16,7 +16,7 @@
     </div>
     <div class="row">
         <div class="col d-flex justify-content-between">
-            <form action="{{ route('patients-store') }}" method="POST" onsubmit="alert('Cadastro realizado com sucesso!')">
+            <form action="{{ route('patients-store') }}" method="POST" onsubmit="alert('Cadastro realizado com sucesso!')" enctype="multipart/form-data">
                 @csrf
                 <div class="form-box d-flex">
                     <div class="form-group my-3">
@@ -47,7 +47,7 @@
                     </div>
                     <div class="form-group my-3">
                         <label for="">Foto</label>
-                        <input type="text" class="form-control" name="foto" required>
+                        <input type="file" class="form-control" name="foto" required>
                     </div>
                     <div class="form-group my-3 ms-3">
                         <label for="">Observação</label>

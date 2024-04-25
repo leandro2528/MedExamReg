@@ -10,12 +10,17 @@ class PatientController extends Controller
 {
     public function index() {
         $patients = Patient::orderBy('id', 'desc')->get();
-        return view('patients.index',
-    
-        [
-            'patients'=>$patients
-        ]
-    );
+
+        foreach($patients as $patient)
+            if(!isset($patient->foto)) {
+                $patient->foto;
+            } else {
+                $patient->foto = '';
+            }
+
+            $img = [];
+
+        return view('patients.index', compact('patients', 'img'));
 
     }
 
@@ -31,19 +36,15 @@ class PatientController extends Controller
     }
 
     public function store(Request $request) {
-        $request->validate([
-            'nome' => 'required',
-            'email' => 'required',
-            'senha' => 'required',
-            'cpf' => 'required',
-            'telefone' => 'required',
-            'cidade' => 'required',
-            'foto' => 'required',
-            'observacao' => 'required'
-        ]);
+        $img = $request->all();
 
-        Patient::create($request->all());
-        return redirect()->route('patients-index');
+        
+        if ($request->foto) {
+            $img['foto'] = $request->foto->store('imgs');
+        }
+
+        $img = Patient::create($img);
+        return redirect()->route('patients-index')->with('success', 'Paciente cadastrado com sucesso!');
 
     }
 
